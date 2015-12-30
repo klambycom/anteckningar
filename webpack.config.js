@@ -3,8 +3,7 @@ module.exports = {
   context: __dirname,
   entry: { app: './index.js' },
   output: {
-    filename: './public/bundle.js',
-    publicPath: 'public'
+    filename: './bundle.js'
   },
   module: {
     loaders: [
