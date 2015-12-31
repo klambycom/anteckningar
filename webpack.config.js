@@ -1,3 +1,5 @@
+var webpack = require('webpack');
+
 module.exports = {
   devtool: 'source-map',
   context: __dirname,
@@ -23,5 +25,21 @@ module.exports = {
         loader: 'babel'
       }
     ]
-  }
+  },
+  devServer: {
+    historyApiFallback: true,
+    hot: true,
+    inline: true,
+    progress: true,
+
+    // Display only errors to reduce the amount of output.
+    stats: 'errors-only',
+
+    // Parse host and port from env so this is easy to customize.
+    host: process.env.HOST,
+    port: process.env.PORT
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ]
 };
