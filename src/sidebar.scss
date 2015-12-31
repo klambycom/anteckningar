@@ -1,0 +1,20 @@
+@import 'shared/common';
+
+#sidebar {
+  flex-grow: 1;
+  max-width: $sidebar-width;
+  margin-right: $space-between-sidebar-and-content;
+  padding: $content-padding;
+  background-color: $sidebar-bg-color;
+  border-radius: 5px;
+
+  h2 {
+    margin-bottom: .5em;
+  }
+
+  ul {
+    padding: 0;
+    list-style: none;
+    line-height: 1.3em;
+  }
+}
