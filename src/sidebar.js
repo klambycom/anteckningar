@@ -21,21 +21,37 @@ let Sidebar = React.createClass({
         );
   },
 
+  renderSection(title, ident, links) {
+    if (links.length === 0) { return ''; }
+
+    return (
+        <li className={ident}>
+          <h2>{title}</h2>
+          <ul>
+            <ul>{links.map(this.renderLink)}</ul>
+          </ul>
+        </li>
+        );
+  },
+
+  hasLinks() {
+    return this.props.links.length === 0 && this.props.headlines.length === 0;
+  },
+
   render() {
+    if (this.hasLinks()) { return <div></div>; }
+
     return (
         <aside id='sidebar'>
           <ul>
-            <li className='table-of-content'>
-              <h2>Table of content</h2>
-              <ul>{this.props.headlines.map(this.renderLink)}</ul>
-            </li>
-
-            <li className='links'>
-              <h2>Other documents</h2>
-              <ul>
-                <ul>{this.props.links.map(this.renderLink)}</ul>
-              </ul>
-            </li>
+            {this.renderSection(
+                'Table of content',
+                'table-of-content',
+                this.props.headlines)}
+            {this.renderSection(
+                'Other documents',
+                'links',
+                this.props.links)}
           </ul>
         </aside>
         );
