@@ -1,15 +1,22 @@
 @import 'shared/common';
 
 #sidebar {
-  flex-grow: 1;
-  max-width: $sidebar-width;
-  margin-right: $space-between-sidebar-and-content;
-  padding: $content-padding;
+  width: $sidebar-width;
+  padding: 0 $content-padding;
   background-color: $sidebar-bg-color;
   border-radius: 5px;
+  float: right;
+  border: 1px solid $sidebar-border-color;
+  font-size: .9em;
+  margin-top: 25px;
+  margin-bottom: 10px;
 
   h2 {
     margin-bottom: .5em;
+    font-family: sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
   }
 
   ul {

@@ -20,8 +20,6 @@ a {
 }
 
 #app {
-  display: flex;
-  align-items: flex-start;
-  width: $site-width;
+  max-width: $site-width;
   margin: 0 auto;
 }
