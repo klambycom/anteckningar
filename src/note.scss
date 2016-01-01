@@ -18,4 +18,9 @@
     border-radius: 3px;
     padding: 0 5px 2px;
   }
+
+  h2 a, h3 a, h4 a {
+    color: rgba(0, 0, 0, .35);
+    text-decoration: none;
+  }
 }
