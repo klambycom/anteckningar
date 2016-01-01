@@ -21,6 +21,10 @@ let App = React.createClass({
 
     return (
         <div id='app'>
+          <header>
+            <h1>{mkd.title}</h1>
+            <hr />
+          </header>
           <Sidebar headlines={mkd.headlines} links={mkd.internLinks} />
           <Note text={mkd.html} />
           <References links={mkd.externLinks} />

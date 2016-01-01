@@ -5,13 +5,15 @@ let headlineLevel;
 let internLinks;
 let externLinks;
 let linksCounter;
+let title;
 
-let reset = function () {
+let reset = function (filename) {
   headlines = [];
   headlineLevel = [0, 0, 0];
   internLinks = [];
   externLinks = [];
   linksCounter = 0;
+  title = filename;
 };
 
 let levelUp = function (level) {
@@ -19,7 +21,7 @@ let levelUp = function (level) {
     headlineLevel[1] = 0;
     headlineLevel[2] = 0;
   }
-  else if (level === 2) {
+  else if (level === 3) {
     headlineLevel[2] = 0;
   }
   headlineLevel[level - 1] += 1;
@@ -32,12 +34,16 @@ let renderer = new marked.Renderer();
 renderer.heading = function(text, level) {
   let escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
 
-  if (level <= 3) {
+  if (level > 1 && level <= 3) {
     headlines.push({
       href: `#${escapedText}`,
       text: text,
-      extra: `${levelUp(level)}.`
+      extra: `${levelUp(level - 1)}.`
     });
+  }
+  else {
+    title = text;
+    return '';
   }
 
   return `
@@ -63,9 +69,9 @@ renderer.link = function (href, title, text) {
   return `<a href="${href}" title="${title}" id="${anchor}">${text}</a>`;
 };
 
-export default function (str) {
-  reset();
+export default function (str, filename = '') {
+  reset(filename);
 
   let html = marked(str, { renderer: renderer });
-  return { html, headlines, internLinks, externLinks };
+  return { html, headlines, internLinks, externLinks, title };
 };
