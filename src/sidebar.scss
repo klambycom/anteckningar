@@ -17,4 +17,13 @@
     list-style: none;
     line-height: 1.3em;
   }
+
+  li>span {
+    display: inline-block;
+    font-size: .7em;
+    width: 28px;
+    text-align: right;
+    font-weight: bold;
+    margin-right: 5px;
+  }
 }

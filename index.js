@@ -10,6 +10,10 @@ I am using __markdown__.
 
 Yupp, I think so.
 
+[Google](http://www.google.se)
+
+[Dairy](/dairy/index)
+
 ### Todo
 
 [x] lkjfdsl

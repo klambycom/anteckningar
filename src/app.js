@@ -19,8 +19,8 @@ let App = React.createClass({
 
     return (
         <div id='app'>
-          <Sidebar />
-          <Note text={mkd.text} />
+          <Sidebar headlines={mkd.headlines} />
+          <Note text={mkd.html} />
         </div>
         );
   }
