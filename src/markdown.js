@@ -2,10 +2,12 @@ import marked from 'marked';
 
 let headlines;
 let headlineLevel;
+let internLinks;
 
 let reset = function () {
   headlines = [];
   headlineLevel = [0, 0, 0];
+  internLinks = [];
 };
 
 let levelUp = function (level) {
@@ -28,7 +30,7 @@ renderer.heading = function(text, level) {
 
   if (level <= 3) {
     headlines.push({
-      url: `#${escapedText}`,
+      href: `#${escapedText}`,
       text: text,
       extra: `${levelUp(level)}.`
     });
@@ -42,9 +44,17 @@ renderer.heading = function(text, level) {
     `;
 };
 
+renderer.link = function (href, title, text) {
+  if (/^\/[^/]/.test(href)) {
+    internLinks.push({ href, text });
+  }
+
+  return `<a href="${href}" title="${title}">${text}</a>`;
+};
+
 export default function (str) {
   reset();
 
   let html = marked(str, { renderer: renderer });
-  return { html, headlines };
+  return { html, headlines, internLinks };
 };
