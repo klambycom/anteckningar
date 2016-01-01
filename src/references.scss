@@ -4,4 +4,16 @@
   background: #e0e0e0;
   padding: $content-padding;
   clear: both;
+  font-size: .8em;
+
+  h2 {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: 500;
+    font-family: sans-serif;
+  }
+
+  ol {
+    margin-bottom: 0;
+  }
 }

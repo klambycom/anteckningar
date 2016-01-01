@@ -23,7 +23,7 @@ let App = React.createClass({
         <div id='app'>
           <Sidebar headlines={mkd.headlines} links={mkd.internLinks} />
           <Note text={mkd.html} />
-          <References />
+          <References links={mkd.externLinks} />
         </div>
         );
   }

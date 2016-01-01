@@ -3,11 +3,15 @@ import marked from 'marked';
 let headlines;
 let headlineLevel;
 let internLinks;
+let externLinks;
+let linksCounter;
 
 let reset = function () {
   headlines = [];
   headlineLevel = [0, 0, 0];
   internLinks = [];
+  externLinks = [];
+  linksCounter = 0;
 };
 
 let levelUp = function (level) {
@@ -45,16 +49,23 @@ renderer.heading = function(text, level) {
 };
 
 renderer.link = function (href, title, text) {
+  linksCounter += 1;
+
+  let anchor = `ref-${linksCounter}`;
+
   if (/^\/[^/]/.test(href)) {
     internLinks.push({ href, text });
   }
+  else {
+    externLinks.push({ href, title, text, anchor: `#${anchor}` });
+  }
 
-  return `<a href="${href}" title="${title}">${text}</a>`;
+  return `<a href="${href}" title="${title}" id="${anchor}">${text}</a>`;
 };
 
 export default function (str) {
   reset();
 
   let html = marked(str, { renderer: renderer });
-  return { html, headlines, internLinks };
+  return { html, headlines, internLinks, externLinks };
 };

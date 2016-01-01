@@ -10,9 +10,14 @@ I am using __markdown__.
 
 Yupp, I think so.
 
-[Google](http://www.google.se)
+Det finns flera olika sökmotorer, som t.ex.
+[Google](http://www.google.se) och
+[Yahoo](http://www.yahoo.com "en sökmotor precis som Google").
+Men det finns även andra typer av sökmotorer, t.ex. [Prisjakt](http://www.prisjakt.nu "företaget där jag jobber"), vars mål inte är att indexera hela internet utan bara en specifik del av internet.
 
 [Dairy](/dairy/index)
+
+---
 
 ### Todo
 
