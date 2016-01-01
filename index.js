@@ -1,9 +1,10 @@
 'use strict';
 
-let app = require('app');
-let BrowserWindow = require('browser-window');
+const electron = require('electron');
+const app = electron.app;
+const BrowserWindow = electron.BrowserWindow;
 
-require('crash-reporter').start();
+electron.crashReporter.start();
 
 let mainWindow = null;
 
