@@ -18,8 +18,12 @@ let References = React.createClass({
   },
 
   render() {
-    // TODO Is footer wrong here?
+    // Hide if the document have no references
+    if (this.props.links.length === 0) {
+      return <div></div>;
+    }
 
+    // TODO Is footer wrong here?
     return (
         <footer id="references">
           <h2>References</h2>
