@@ -1,11 +1,16 @@
 var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
   devtool: 'source-map',
-  context: __dirname,
-  entry: { app: './index.js' },
+  context: path.resolve(__dirname, 'src'),
+  target: 'atom',
+  entry: './entry.js',
   output: {
-    filename: './bundle.js'
+    filename: './bundle.js',
+  },
+  resolve: {
+    extensions: ['', '.js', '.jsx', '.scss', '.png']
   },
   module: {
     loaders: [
