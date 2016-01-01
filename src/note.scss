@@ -50,4 +50,77 @@
       display: inline;
     }
   }
+
+  pre {
+    background: $code-background;
+    padding: 10px;
+    border-radius: 3px;
+
+    code {
+      display: block;
+      overflow: scroll;
+      border: 0;
+      color: $code-color;
+
+      .hljs-comment,
+      .hljs-quote {
+        color: $code-comment;
+      }
+
+      .hljs-variable,
+      .hljs-template-variable,
+      .hljs-attribute,
+      .hljs-tag,
+      .hljs-name,
+      .hljs-regexp,
+      .hljs-link,
+      .hljs-name,
+      .hljs-selector-id,
+      .hljs-selector-class {
+        color: $code-variable;
+      }
+
+      .hljs-number,
+      .hljs-meta,
+      .hljs-built_in,
+      .hljs-builtin-name,
+      .hljs-literal,
+      .hljs-type,
+      .hljs-params {
+        color: $code-builtin;
+      }
+
+      .hljs-string,
+      .hljs-symbol,
+      .hljs-bullet {
+        color: $code-string;
+      }
+
+      .hljs-title,
+      .hljs-section {
+        color: #6684e1;
+      }
+
+      .hljs-keyword,
+      .hljs-selector-tag {
+        color: $code-keyword;
+      }
+
+      .hljs {
+        display: block;
+        overflow-x: auto;
+        background: $code-background;
+        color: $code-color;
+        padding: 0.5em;
+      }
+
+      .hljs-emphasis {
+        font-style: italic;
+      }
+
+      .hljs-strong {
+        font-weight: bold;
+      }
+    }
+  }
 }

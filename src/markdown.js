@@ -1,4 +1,5 @@
 import marked from 'marked';
+import highlightjs from 'highlight.js';
 
 let headlines;
 let headlineLevel;
@@ -69,9 +70,18 @@ renderer.link = function (href, title, text) {
   return `<a href="${href}" title="${title}" id="${anchor}">${text}</a>`;
 };
 
+marked.setOptions({
+  highlight(code, language) {
+    let lang = language ? [language] : undefined;
+    return highlightjs.highlightAuto(code, lang).value;
+  },
+
+  renderer
+});
+
 export default function (str, filename = '') {
   reset(filename);
 
-  let html = marked(str, { renderer: renderer });
+  let html = marked(str);
   return { html, headlines, internLinks, externLinks, title };
 };
