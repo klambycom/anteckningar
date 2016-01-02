@@ -2,37 +2,19 @@ import ReactDOM from 'react-dom'
 import React from 'react';
 import App from './app';
 
-let basePath = '/Users/christian.nilsson/Dropbox/anteckningar';
+import filesystem from './filesystem';
 
-var fs = require('fs');
-var path = require('path');
+console.log(process.env);
 
-fs.readdir(basePath, (err, data) => {
+filesystem.readDir((err, data) => {
   if (err) { throw err; }
   console.log(data);
 });
 
-let renderFile = (data) => {
+filesystem.readIndex((err, data) => {
+  if (err) { throw err; }
+
   ReactDOM.render(
       <App markdown={data} />,
       document.getElementById('root'));
-}
-
-let defaultIndex = './index.md';
-let index = path.resolve(basePath, 'index.md');
-
-fs.readFile(index, 'utf8', (err, data) => {
-  if (err) {
-    fs.readFile(defaultIndex, 'utf8', (err, data) => {
-      if (err) {
-        console.log(err.message); throw err;
-      }
-      else {
-        renderFile(data);
-      }
-    });
-  }
-  else {
-    renderFile(data);
-  }
 });
