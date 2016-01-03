@@ -1,42 +1,55 @@
 let tokens = [];
 let position = 0;
 
+let isOpenToken = (type) => {
+  return type === 'list_start'
+    || type === 'list_item_start'
+    || type === 'blockquote_start';
+}
+
+let isCloseToken = (type) => {
+  return type === 'list_end'
+    || type === 'list_item_end'
+    || type === 'blockquote_end'
+};
+
+// TODO Refactor!
+let cleanTypeText = (type) => {
+  if (type === 'list_start') {
+    return 'list';
+  }
+  else if (type === 'list_item_start') {
+    return 'list_item';
+  }
+  else if (type === 'blockquote_start') {
+    return 'blockquote';
+  }
+};
+
 let buildNode = function () {
-  let token = tokens[position];
-  token.children = [];
+  // Create node
+  let node = tokens[position];
+  node.children = [];
   position += 1;
 
-  let isOpen = token.type === 'list_start'
-    || token.type === 'list_item_start'
-    || token.type === 'blockquote_start';
+  // Add children to the node
+  let isOpen = isOpenToken(node.type);
 
-  if (isOpen) {
-    if (token.type === 'list_start') {
-      token.type = 'list';
-    }
-    else if (token.type === 'list_item_start') {
-      token.type = 'list_item';
-    }
-    else if (token.type === 'blockquote_start') {
-      token.type = 'blockquote';
-    }
-  }
+  if (isOpen) { node.type = cleanTypeText(node.type); }
 
   while (isOpen) {
-    isOpen = tokens[position].type !== 'list_end'
-      && tokens[position].type !== 'list_item_end'
-      && tokens[position].type !== 'blockquote_end';
+    isOpen = !isCloseToken(tokens[position].type);
 
+    // Don't add the token if it's just a closing token..
     if (isOpen) {
-      let childToken = buildNode();
-      token.children.push(childToken);
+      let childNode = buildNode();
+      node.children.push(childNode);
     }
-    else {
-      position += 1;
-    }
+    // ..but move the position to not make a infinite loop
+    else { position += 1; }
   }
 
-  return token;
+  return node;
 };
 
 export default function (data) {
