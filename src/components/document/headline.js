@@ -1,5 +1,6 @@
 import React from 'react';
 
+// TOOD Rename to heading? As in h1, h2, h3, etc.
 let Headline = React.createClass({
   propTypes: {
     level: React.PropTypes.number.isRequired,

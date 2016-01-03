@@ -21,10 +21,6 @@ let App = React.createClass({
 
     return (
         <div id='app'>
-          <header>
-            <h1>Snälla fungara</h1>
-            <hr />
-          </header>
           <Document tokens={tokens} />
         </div>
         );
