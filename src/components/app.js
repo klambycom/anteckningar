@@ -6,28 +6,26 @@ import Note from './note';
 import References from './references';
 
 import markdown from '../markdown';
+import Document from './document';
+
+import marked from 'marked';
 
 let App = React.createClass({
   propTypes: {
     markdown: React.PropTypes.string.isRequired
   },
 
-  markdown() {
-    return markdown(this.props.markdown);
-  },
-
   render() {
-    let mkd = this.markdown();
+    let lexer = new marked.Lexer();
+    let tokens = lexer.lex(this.props.markdown);
 
     return (
         <div id='app'>
           <header>
-            <h1>{mkd.title}</h1>
+            <h1>Snälla fungara</h1>
             <hr />
           </header>
-          <Sidebar headlines={mkd.headlines} links={mkd.internLinks} />
-          <Note text={mkd.html} />
-          <References links={mkd.externLinks} />
+          <Document tokens={tokens} />
         </div>
         );
   }

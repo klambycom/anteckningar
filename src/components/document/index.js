@@ -18,8 +18,11 @@ let Document = React.createClass({
         return <Paragraph text={x.text} />;
       
       default:
-        console.log(x.type, x);
-        return <p>Not implemented yet!</p>
+        return (
+            <p style={{color: 'red'}}>
+              The {x.type}-type is not supported!
+            </p>
+            );
     }
   },
 
