@@ -5,7 +5,7 @@ import Sidebar from './sidebar';
 import Note from './note';
 import References from './references';
 
-import markdown from './markdown';
+import markdown from '../markdown';
 
 let App = React.createClass({
   propTypes: {
