@@ -15,7 +15,7 @@ let ListItem = React.createClass({
       default:
         return (
             <p key={i} style={{color: 'red'}}>
-              The {x.type}-type is not supported as list item!
+              The {x.type}-type is not supported as &lt;ListItem /&gt;!
             </p>
             );
     }

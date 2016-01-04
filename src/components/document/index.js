@@ -4,6 +4,7 @@ import ast from '../../ast';
 import Headline from './headline';
 import Paragraph from './paragraph';
 import List from './list';
+import Blockquote from './blockquote';
 
 let Document = React.createClass({
   propTypes: {
@@ -43,8 +44,11 @@ let Document = React.createClass({
         return <Paragraph key={i} text={x.text} />;
 
       case 'list':
-        console.log(x);
         return <List key={i} isOrdered={x.ordered} items={x.children} />;
+
+      case 'blockquote':
+        console.log(x);
+        return <Blockquote key={i} children={x.children} />;
       
       default:
         return (
