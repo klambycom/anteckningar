@@ -5,6 +5,7 @@ import Headline from './headline';
 import Paragraph from './paragraph';
 import List from './list';
 import Blockquote from './blockquote';
+import Hr from './hr';
 
 let Document = React.createClass({
   propTypes: {
@@ -47,9 +48,11 @@ let Document = React.createClass({
         return <List key={i} isOrdered={x.ordered} items={x.children} />;
 
       case 'blockquote':
-        console.log(x);
         return <Blockquote key={i} children={x.children} />;
-      
+
+      case 'hr':
+        return <Hr key={i} />;
+
       default:
         return (
             <p key={i} style={{color: 'red'}}>
