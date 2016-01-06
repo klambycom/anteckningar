@@ -87,9 +87,14 @@ let Table = React.createClass({
   },
 
   render() {
+    let tableClass = '';
+    if (this.props.headers.length > 5) {
+      tableClass = 'compact';
+    }
+
     return (
         <div className='table-wrapper'>
-          <table>
+          <table className={tableClass}>
             <thead>
               <tr>
                 {this.props.headers.map(this.renderHeadCell)}

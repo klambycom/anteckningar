@@ -10,6 +10,14 @@
     width: 100%;
     border-spacing: 0;
 
+    &.compact {
+      font-size: .8em;
+
+      th.desc a:after, th.asc a:after {
+        margin: 6px 3px;
+      }
+    }
+
     th, td {
       border-bottom: 1px solid #D2D2D2;
 
