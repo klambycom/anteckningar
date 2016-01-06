@@ -3,22 +3,54 @@
     width: 100%;
     border-spacing: 0;
 
-    th {
-      border-top: 1px solid #D2D2D2;
-    }
-
     th, td {
       border-bottom: 1px solid #D2D2D2;
       border-left: 1px solid #D2D2D2;
-      padding: 3px 10px;
 
       &:last-child {
         border-right: 1px solid #D2D2D2;
       }
     }
 
+    td {
+      padding: 3px 10px;
+    }
+
     th {
       border-top: 1px solid #D2D2D2;
+
+      a {
+        display: block;
+        color: black;
+        padding: 3px 10px;
+
+        &:hover {
+          background: #C3C3C3;
+          text-decoration: none;
+        }
+      }
+
+      &.desc, &.asc {
+        position: relative;
+
+        a:after {
+          content: '';
+          position: absolute;
+          width: 0;
+          height: 0;
+          border-left: 5px solid transparent;
+          border-right: 5px solid transparent;
+          margin: 10px;
+        }
+      }
+
+      &.desc a:after {
+        border-top: 5px solid black;
+      }
+
+      &.asc a:after {
+        border-bottom: 5px solid black;
+      }
     }
 
     thead tr {
