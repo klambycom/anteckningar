@@ -1,3 +1,5 @@
+import './blockquote.scss';
+
 import React from 'react';
 
 import Paragraph from './paragraph';
