@@ -1,14 +1,20 @@
 #document {
+  .table-wrapper {
+    overflow: scroll;
+    margin: 15px 0;
+    border-right: 1px solid #D2D2D2;
+    border-left: 1px solid #D2D2D2;
+  }
+
   table {
     width: 100%;
     border-spacing: 0;
 
     th, td {
       border-bottom: 1px solid #D2D2D2;
-      border-left: 1px solid #D2D2D2;
 
-      &:last-child {
-        border-right: 1px solid #D2D2D2;
+      &:not(:first-child) {
+        border-left: 1px solid #D2D2D2;
       }
     }
 
@@ -22,7 +28,7 @@
       a {
         display: block;
         color: black;
-        padding: 3px 10px;
+        padding: 3px 15px;
 
         &:hover {
           background: #C3C3C3;
@@ -40,7 +46,7 @@
           height: 0;
           border-left: 5px solid transparent;
           border-right: 5px solid transparent;
-          margin: 10px;
+          margin: 10px 3px;
         }
       }
 

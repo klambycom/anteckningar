@@ -88,16 +88,18 @@ let Table = React.createClass({
 
   render() {
     return (
-        <table>
-          <thead>
-            <tr>
-              {this.props.headers.map(this.renderHeadCell)}
-            </tr>
-          </thead>
-          <tbody>
-            {this.getRows().map(this.renderRow)}
-          </tbody>
-        </table>
+        <div className='table-wrapper'>
+          <table>
+            <thead>
+              <tr>
+                {this.props.headers.map(this.renderHeadCell)}
+              </tr>
+            </thead>
+            <tbody>
+              {this.getRows().map(this.renderRow)}
+            </tbody>
+          </table>
+        </div>
         );
   }
 });
