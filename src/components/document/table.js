@@ -1,3 +1,5 @@
+import './table.scss';
+
 import React from 'react';
 
 let Table = React.createClass({

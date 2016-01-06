@@ -1,0 +1,38 @@
+#document {
+  table {
+    width: 100%;
+    border-spacing: 0;
+
+    th {
+      border-top: 1px solid #D2D2D2;
+    }
+
+    th, td {
+      border-bottom: 1px solid #D2D2D2;
+      border-left: 1px solid #D2D2D2;
+      padding: 3px 10px;
+
+      &:last-child {
+        border-right: 1px solid #D2D2D2;
+      }
+    }
+
+    th {
+      border-top: 1px solid #D2D2D2;
+    }
+
+    thead tr {
+      background: #D0CECE;
+    }
+
+    tbody {
+      tr:nth-child(even) {
+        background-color: #F7F7F7;
+      }
+
+      tr:hover {
+        background: #F9F9B9;
+      }
+    }
+  }
+}
