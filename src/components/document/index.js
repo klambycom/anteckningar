@@ -7,6 +7,7 @@ import List from './list';
 import Blockquote from './blockquote';
 import Hr from './hr';
 import Table from './table';
+import Code from './code';
 
 let Document = React.createClass({
   propTypes: {
@@ -56,6 +57,9 @@ let Document = React.createClass({
 
       case 'table':
         return <Table key={i} headers={x.header} cells={x.cells} />;
+
+      case 'code':
+        return <Code key={i} lang={x.lang} text={x.text} />;
 
       default:
         return (
