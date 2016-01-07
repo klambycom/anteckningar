@@ -55,29 +55,29 @@ renderer.heading = function(text, level) {
     `;
 };
 
-renderer.link = function (href, title, text) {
-  linksCounter += 1;
+//renderer.link = function (href, title, text) {
+//  linksCounter += 1;
+//
+//  let anchor = `ref-${linksCounter}`;
+//
+//  if (/^\/[^/]/.test(href)) {
+//    internLinks.push({ href, text });
+//  }
+//  else {
+//    externLinks.push({ href, title, text, anchor: `#${anchor}` });
+//  }
+//
+//  return `<a href="${href}" title="${title}" id="${anchor}">${text}</a>`;
+//};
 
-  let anchor = `ref-${linksCounter}`;
-
-  if (/^\/[^/]/.test(href)) {
-    internLinks.push({ href, text });
-  }
-  else {
-    externLinks.push({ href, title, text, anchor: `#${anchor}` });
-  }
-
-  return `<a href="${href}" title="${title}" id="${anchor}">${text}</a>`;
-};
-
-marked.setOptions({
-  highlight(code, language) {
-    let lang = language ? [language] : undefined;
-    return highlightjs.highlightAuto(code, lang).value;
-  },
-
-  renderer
-});
+//marked.setOptions({
+//  highlight(code, language) {
+//    let lang = language ? [language] : undefined;
+//    return highlightjs.highlightAuto(code, lang).value;
+//  },
+//
+//  renderer
+//});
 
 export default function (str, filename = '') {
   reset(filename);
