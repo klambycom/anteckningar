@@ -14,6 +14,17 @@ function escape(html, encode) {
 // This should probebly be called tokens. Because I don't think you can call it
 // a AST. I don't know anythin about compilers.
 
+marked.InlineLexer.prototype.outputLink = function(cap, link) {
+  var href = escape(link.href)
+    , title = link.title ? escape(link.title) : null;
+
+  if (cap[0].charAt(0) !== '!') {
+    return { type: 'link', href, title, children: this.output(cap[1]) };
+  }
+
+  return { type: 'image', href, title, text: escape(cap[1]) };
+};
+
 marked.InlineLexer.prototype.output = function(src) {
   let tokens = [];
 
@@ -24,10 +35,12 @@ marked.InlineLexer.prototype.output = function(src) {
     , cap;
 
   while (src) {
+    // TODO
     // escape
     if (cap = this.rules.escape.exec(src)) {
+      console.error('TODO escape');
       src = src.substring(cap[0].length);
-      out += cap[1];
+      //out += cap[1];
       continue;
     }
 
@@ -56,34 +69,34 @@ marked.InlineLexer.prototype.output = function(src) {
       continue;
     }
 
-    // TODO
     // tag
+    // TODO Other type of tags maybe? <!-- tag: tag1, tag2, tag3 -->
     if (cap = this.rules.tag.exec(src)) {
-      console.error('TODO tag');
       if (!this.inLink && /^<a /i.test(cap[0])) {
         this.inLink = true;
       } else if (this.inLink && /^<\/a>/i.test(cap[0])) {
         this.inLink = false;
       }
       src = src.substring(cap[0].length);
-      out += this.options.sanitize
-        ? this.options.sanitizer
-          ? this.options.sanitizer(cap[0])
-          : escape(cap[0])
-        : cap[0]
+      tokens.push({
+        type: 'tag',
+        code: this.options.sanitize
+          ? this.options.sanitizer
+            ? this.options.sanitizer(cap[0])
+            : escape(cap[0])
+          : cap[0]
+      });
       continue;
     }
 
-    // TODO
     // link
     if (cap = this.rules.link.exec(src)) {
-      console.error('TODO link');
       src = src.substring(cap[0].length);
       this.inLink = true;
-      out += this.outputLink(cap, {
+      tokens.push(this.outputLink(cap, {
         href: cap[2],
         title: cap[3]
-      });
+      }));
       this.inLink = false;
       continue;
     }
@@ -92,7 +105,7 @@ marked.InlineLexer.prototype.output = function(src) {
     // reflink, nolink
     if ((cap = this.rules.reflink.exec(src))
         || (cap = this.rules.nolink.exec(src))) {
-      console.error('TODO link');
+      console.error('TODO reflink, nolink');
       src = src.substring(cap[0].length);
       link = (cap[2] || cap[1]).replace(/\s+/g, ' ');
       link = this.links[link.toLowerCase()];
