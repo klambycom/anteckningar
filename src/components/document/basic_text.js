@@ -1,5 +1,7 @@
 import React from 'react';
 
+import InlineCode from './inline_code';
+
 // TODO Better name, this is not just basic text.
 let BasicText = React.createClass({
   propTypes: {
@@ -10,6 +12,9 @@ let BasicText = React.createClass({
     switch(x.type) {
       case 'basic_text':
         return x.text;
+
+      case 'inline_code':
+        return <InlineCode key={i} code={x.code} />;
 
       default:
         return (

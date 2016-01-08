@@ -137,7 +137,7 @@ marked.InlineLexer.prototype.output = function(src) {
     // code
     if (cap = this.rules.code.exec(src)) {
       src = src.substring(cap[0].length);
-      tokens.push({ type: 'inline_code', children: this.output(escape(cap[2])) });
+      tokens.push({ type: 'inline_code', code: escape(cap[2]) });
       continue;
     }
 
