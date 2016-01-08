@@ -1,16 +1,14 @@
 import React from 'react';
 
+import BasicText from './basic_text';
+
 let Paragraph = React.createClass({
   propTypes: {
-    text: React.PropTypes.string
-  },
-
-  getDefaultProps() {
-    return { text: '' };
+    children: React.PropTypes.array
   },
 
   render() {
-    return <p>{this.props.text}</p>;
+    return <p><BasicText children={this.props.children} /></p>;
   }
 });
 

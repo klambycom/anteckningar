@@ -6,6 +6,7 @@ import ast from './ast';
 let parseText = links => x => {
   switch(x.type) {
     case 'heading':
+    case 'paragraph':
       x.children = inlineAst(links, x.text);
       delete x.text;
       break;

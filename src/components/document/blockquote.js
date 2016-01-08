@@ -12,7 +12,7 @@ let Blockquote = React.createClass({
   build(x, i) {
     switch(x.type) {
       case 'paragraph':
-        return <Paragraph key={i} text={x.text} />;
+        return <Paragraph key={i} children={x.children} />;
       
       default:
         return (

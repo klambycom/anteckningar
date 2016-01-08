@@ -14,7 +14,7 @@ let BasicText = React.createClass({
       default:
         return (
             <span key={i} style={{color: 'red'}}>
-              The {x.type}-type is not supported in &gt;BasicText /&lt;!
+              The {x.type}-type is not supported in &lt;BasicText /&gt;!
             </span>
             );
     }

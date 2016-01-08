@@ -30,7 +30,7 @@ let Document = React.createClass({
         return;
       
       case 'paragraph':
-        return <Paragraph key={i} text={x.text} />;
+        return <Paragraph key={i} children={x.children} />;
 
       case 'list':
         return <List key={i} isOrdered={x.ordered} items={x.children} />;
