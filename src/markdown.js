@@ -12,8 +12,24 @@ let parseText = links => x => {
       delete x.text;
       break;
 
+    case 'table':
+      // TODO?
+      break;
+
+    case 'list_start':
+    case 'list_end':
+    case 'list_item_start':
+    case 'list_item_end':
+    case 'hr':
+    case 'space':
+    case 'blockquote_start':
+    case 'blockquote_end':
+    case 'code':
+      // Do nothing!
+      break;
+
     default:
-      //console.log(x);
+      console.error('Not implemented', x);
   }
 
   return x;
