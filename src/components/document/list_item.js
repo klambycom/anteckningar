@@ -1,6 +1,6 @@
 import React from 'react';
 
-import InlineText from './inline_text';
+import BasicText from './basic_text';
 
 let ListItem = React.createClass({
   propTypes: {
@@ -10,7 +10,7 @@ let ListItem = React.createClass({
   parse(x, i) {
     switch(x.type) {
       case 'text':
-        return <InlineText key={i} text={x.text} />;
+        return <BasicText key={i} children={x.children} />;
       
       default:
         return (

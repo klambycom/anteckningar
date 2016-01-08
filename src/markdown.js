@@ -7,6 +7,7 @@ let parseText = links => x => {
   switch(x.type) {
     case 'heading':
     case 'paragraph':
+    case 'text':
       x.children = inlineAst(links, x.text);
       delete x.text;
       break;
