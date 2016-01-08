@@ -1,6 +1,7 @@
 import React from 'react';
 
 import InlineCode from './inline_code';
+import Emphasis from './emphasis';
 
 // TODO Better name, this is not just basic text.
 let BasicText = React.createClass({
@@ -15,6 +16,9 @@ let BasicText = React.createClass({
 
       case 'inline_code':
         return <InlineCode key={i} code={x.code} />;
+
+      case 'em':
+        return <Emphasis key={i} children={x.children} />;
 
       default:
         return (
