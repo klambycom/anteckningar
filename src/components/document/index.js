@@ -1,5 +1,4 @@
 import React from 'react';
-import ast from '../../ast';
 
 import Headline from './headline';
 import Paragraph from './paragraph';
@@ -11,28 +10,15 @@ import Code from './code';
 
 let Document = React.createClass({
   propTypes: {
-    tokens: React.PropTypes.array.isRequired
+    title: React.PropTypes.string,
+    components: React.PropTypes.array
   },
 
-  getInitialState() {
+  getDefaultProps() {
     return {
       title: 'Untitled',
       components: [{ type: 'paragraph', text: 'Empty document.' }]
     };
-  },
-
-  componentDidMount() {
-    let components = ast(this.props.tokens).children;
-    let title = components
-      .filter(x => x.type === 'heading' && x.depth === 1)[0]
-      .text;
-
-    if (title) {
-      this.setState({ components, title });
-    }
-    else {
-      this.setState({ components });
-    }
   },
 
   build(x, i) {
@@ -74,10 +60,10 @@ let Document = React.createClass({
     return (
         <div id='document'>
           <header>
-            <h1>{this.state.title}</h1>
+            <h1>{this.props.title}</h1>
             <hr />
           </header>
-          {this.state.components.map(this.build)}
+          {this.props.components.map(this.build)}
         </div>
         );
   }
