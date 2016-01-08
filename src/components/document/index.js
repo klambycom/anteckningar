@@ -10,13 +10,13 @@ import Code from './code';
 
 let Document = React.createClass({
   propTypes: {
-    title: React.PropTypes.string,
+    title: React.PropTypes.array,
     components: React.PropTypes.array
   },
 
   getDefaultProps() {
     return {
-      title: 'Untitled',
+      title: [{ type: 'basic_text', text:'Untitled' }],
       components: [{ type: 'paragraph', text: 'Empty document.' }]
     };
   },
@@ -25,7 +25,7 @@ let Document = React.createClass({
     switch(x.type) {
       case 'heading':
         if (x.depth > 1) {
-          return <Headline key={i} level={x.depth} text={x.text} />;
+          return <Headline key={i} level={x.depth} children={x.children} />;
         }
         return;
       
@@ -60,7 +60,7 @@ let Document = React.createClass({
     return (
         <div id='document'>
           <header>
-            <h1>{this.props.title}</h1>
+            <Headline level={1} children={this.props.title} />
             <hr />
           </header>
           {this.props.components.map(this.build)}

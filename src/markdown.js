@@ -3,23 +3,30 @@ import marked from 'marked';
 import inlineAst from './inline_ast';
 import ast from './ast';
 
+let parseText = links => x => {
+  switch(x.type) {
+    case 'heading':
+      x.children = inlineAst(links, x.text);
+      delete x.text;
+      break;
+
+    default:
+      //console.log(x);
+  }
+
+  return x;
+};
+
 export default function (markdown) {
   let lexer = new marked.Lexer();
   let tokens = lexer.lex(markdown);
 
-  //console.log(tokens);
+  tokens = tokens.map(parseText(tokens));
 
   let components = ast(tokens).children;
   let title = components
     .filter(x => x.type === 'heading' && x.depth === 1)[0]
-    .text;
+    .children;
 
   return { title, components };
 };
-
-//let inline = InlineAst(tokens, '_hej_ __san__');
-//
-//console.log('Result');
-//inline.forEach(x => {
-//  console.log(x);
-//});

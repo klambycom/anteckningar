@@ -158,7 +158,7 @@ marked.InlineLexer.prototype.output = function(src) {
     // text
     if (cap = this.rules.text.exec(src)) {
       src = src.substring(cap[0].length);
-      tokens.push({ type: 'text', text: escape(this.smartypants(cap[0])) });
+      tokens.push({ type: 'basic_text', text: escape(this.smartypants(cap[0])) });
       continue;
     }
 
@@ -174,7 +174,5 @@ marked.InlineLexer.prototype.output = function(src) {
 // TODO What is links?????!!!
 export default function (links, data) {
   let inlineLexer = new marked.InlineLexer(links);
-  let tokens = inlineLexer.output('_hej_ __san__ http://www.google.se <!-- hej --> [hej](san "foo") hejsansa');
-
-  return tokens;
+  return inlineLexer.output(data);
 };

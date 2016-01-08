@@ -29,7 +29,9 @@ let cleanTypeText = (type) => {
 let buildNode = function () {
   // Create node
   let node = tokens[position];
-  node.children = [];
+  if (typeof node.children === 'undefined') {
+    node.children = [];
+  }
   position += 1;
 
   // Add children to the node
